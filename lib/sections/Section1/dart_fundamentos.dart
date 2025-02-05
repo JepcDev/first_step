@@ -9,7 +9,7 @@ void main(List<String> args) {
   // final double pi = 3.1416;
 
   // print(saludos("Jose"));
-  saludos("Jose");
+  saludos("Jose", 'pc', 29);
 }
 
   // DEV:TODO -> funcion
@@ -27,8 +27,15 @@ void main(List<String> args) {
   // DEV:COMMENT -> function flecha
   // void saludos(String nombre) => print("Bienvenido $nombre");
 
-
   // DEV:TODO -> funcion con parametros opcionales  pocionales
+  void saludos(String nombre, [String? apellido, num? edad]){
+    if (apellido != null && edad != null) {
+      print('Bienvenido $nombre $apellido, edad $edad');
+    }else{
+      print('Bienvenido $nombre');
+    }
+  }
+
   // DEV:TODO -> funcion con parametros opcionales nombrados
   // DEV:TODO -> programacion orientada a objetos
   // DEV:TODO -> clases
