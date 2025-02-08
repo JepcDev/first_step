@@ -127,7 +127,7 @@
 //   camion.color = "Verde";
 //   camion.modelo = "Truck";
 //   camion.marca = "Volvo";
-//   camion.mostrarVehiculo();
+//   camion.queVehiculoSoy();
 
 //   var auto = Automovil();
 //   auto.color = "Azul";
@@ -138,6 +138,52 @@
 
   // DEV:TODO -> herencia constructor
   // DEV:TODO -> sobreescribir metodos
+  // Nos permite sobre escribir funcionalidades, metodos que ya existan dentro de la clase base en una jerarquia de clases
+// class Vehiculo{
+//   String? color;
+//   String? modelo;
+//   String? marca;
+
+//   void mostrarVehiculo(){
+//     print("Marca: $marca, Modelo $modelo, color: $color");
+//   }
+
+//   void queVehiculoSoy(){
+//     print("No estoy implementado aún");
+//   }
+
+// }
+
+// class Camion extends Vehiculo{
+
+//   @override
+//   void queVehiculoSoy(){
+//     print("Soy un Camion, Marca: $marca, Modelo $modelo, color: $color");
+//   }
+// }
+
+// class Automovil extends Vehiculo {
+
+//   @override
+//   void queVehiculoSoy(){
+//     print("Soy un automóvil, Marca: $marca, Modelo $modelo, color: $color");
+//   }
+// }
+
+// void main() {
+//   var camion = Camion();
+//   camion.color = "Verde";
+//   camion.modelo = "Truck";
+//   camion.marca = "Volvo";
+//   camion.queVehiculoSoy();
+
+//   var auto = Automovil();
+//   auto.color = "Azul";
+//   auto.modelo = "Focus";
+//   auto.marca = "Ford";
+//   auto.queVehiculoSoy();
+// }
+
   // DEV:TODO -> clases abstractas
   // DEV:TODO -> clases interfaces
 
