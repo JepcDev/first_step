@@ -2,7 +2,7 @@
 // ANCHOR -> Variables y constantes
 // variables: Espacios en memoria para almacenar un valor, puede cambuiar a lo largo de la ejecucicion del programa.
 // Constantes: Son variables pero su contenido no cambia a lo largo de la ejecucion del programa.
-void main(List<String> args) {
+// void main(List<String> args) {
 
   //DEV:TODO -> variables y constantes
   // int edad= 28;
@@ -10,7 +10,7 @@ void main(List<String> args) {
 
   // print(saludos("Jose"));
   // saludos("Jose", 'pc', 29);
-}
+// }
 
   // DEV:TODO -> funcion
   // DEV:COMMENT -> sin retorno
@@ -52,6 +52,7 @@ void main(List<String> args) {
   // utiliza objetos para relacionarse, ejemplo: un automovil -> equema de poo, el automovil es elemento objeto principal que tiene una serie de (caracteristicas(propiedades):color,modelo,marca) y tambien tiene una serie de (funcionalidade(metodos):Arrancar,Detener,Estacionarse)
 
   // DEV:TODO -> clases
+  // DEV:COMMENT -> Los MÉTODOS son funciones que se encuentran dentro o pertenecen espeficamente a una clase.
   // ejemplo: tenemos objetos: automovil, camion y moto, los cuales comparten caracteristicas y funcionalidades similares, y si nos quisieramos referir a todos ellos como uno solo nos refeririamos como vehiculos
   // Una clase es un conjunto de objetos que comparten caracteristicas y funcionalidades  comunes.
   // class Vehiculo {
@@ -74,9 +75,69 @@ void main(List<String> args) {
   // }
 
   // DEV:TODO -> constructores
+  // Es el mecanismo en programacion para entregarle un estado incial a un objeto
+  // Nos sirve para construir un estado inicial de un objeto,
+  // class Vehiculo {
+  //   // caracteristicas - Propiedades
+  //   String? color;
+  //   String? modelo;
+  //   String? marca;
+
+  //   // constructor
+      // Vehiculo(this.marca, this.modelo);
+  //   Vehiculo(String marca, String modelo){//le envio los parametros que quiero construir por defecto
+  //     //Le digo a la clase que Los parametros que estoy recibiendo los voy a construir al momento de instanciarlos
+  //     this.modelo = modelo;
+  //     this.marca = marca;
+  //   }
+  //   // funcionalidades - Metodos
+  //   void arrancar(){
+  //     print("Hola soy el auto $marca de color $color y estoy arrancando");
+  //   }
+  // }
+  // void main(List<String> args) {
+  //  var auto = Vehiculo("Ford", "Focus");
+      // auto.arrancar();
+  // }
+
   // DEV:TODO -> Herencia
-  // DEV:TODO -> sobreescribir metodos
+  // Se encarga de heredar atributos, metos y constructores a clases hijas en una jerarquia. identificar propiedades comunes unos entre otros objetos y asi formar una organizacion de objetos.
+  // La herencia nos permite organizar nuestras clases y no tener que repetir el codigo cuando identifiquemos elementos(funcionalidades, caracteristicas) comunes
+// class Vehiculo{
+//   String? color;
+//   String? modelo;
+//   String? marca;
+
+//   void mostrarVehiculo(){
+//     print("Marca: $marca, Modelo $modelo, color: $color");
+//   }
+
+// }
+
+// class Camion extends Vehiculo{
+
+// }
+
+// class Automovil extends Vehiculo {
+
+// }
+
+// void main() {
+//   var camion = Camion();
+//   camion.color = "Verde";
+//   camion.modelo = "Truck";
+//   camion.marca = "Volvo";
+//   camion.mostrarVehiculo();
+
+//   var auto = Automovil();
+//   auto.color = "Azul";
+//   auto.modelo = "Focus";
+//   auto.marca = "Ford";
+//   auto.mostrarVehiculo();
+// }
+
   // DEV:TODO -> herencia constructor
+  // DEV:TODO -> sobreescribir metodos
   // DEV:TODO -> clases abstractas
   // DEV:TODO -> clases interfaces
 
