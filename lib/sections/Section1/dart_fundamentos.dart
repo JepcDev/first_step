@@ -137,6 +137,56 @@
 // }
 
   // DEV:TODO -> herencia constructor
+  // En la clase base se define un constructor
+//   class Vehiculo{
+//   String? color;
+//   String? modelo;
+//   String? marca;
+
+//   Vehiculo(this.modelo, this.marca);
+
+//   void mostrarVehiculo(){
+//     print("Marca: $marca, Modelo $modelo, color: $color");
+//   }
+
+//   void queVehiculoSoy(){
+//     print("No estoy implementado aún");
+//   }
+
+// }
+
+// class Camion extends Vehiculo{
+
+//   Camion(String modelo, String marca):super(modelo, marca);
+
+//   @override
+//   void queVehiculoSoy(){
+//     print("Soy un Camion, Marca: $marca, Modelo $modelo, color: $color");
+//   }
+// }
+
+// class Automovil extends Vehiculo {
+
+//   Automovil(String modelo, String marca):super(modelo, marca);
+
+//   @override
+//   void queVehiculoSoy(){
+//     print("Soy un Camion, Marca: $marca, Modelo: $modelo, color: $color");
+//   }
+// }
+
+// void main() {
+//   var camion = Camion("Truck", "Volvo");
+//   camion.color = "Verde";
+//   camion.queVehiculoSoy();
+
+//   var auto = Automovil();
+//   auto.color = "Azul";
+//   auto.modelo = "Focus";
+//   auto.marca = "Ford";
+//   auto.mostrarVehiculo();
+// }
+
   // DEV:TODO -> sobreescribir metodos
   // Nos permite sobre escribir funcionalidades, metodos que ya existan dentro de la clase base en una jerarquia de clases
 // class Vehiculo{
@@ -184,7 +234,52 @@
 //   auto.queVehiculoSoy();
 // }
 
-  // DEV:TODO -> clases abstractas
+  // DEV:TODO -> clases abstractas y Interfaces
+  // La clase abstracta es la representacion es la estructura que le queremos dar a ciertas clases, las clases abstractas mecesitan de otras clases las cuales implementaran los metodos de estas clases abstractas, las clases abstractas pueden tener propiedades y metodos que compartan las clases hijas que la implementen
+  // Las interfaces son como contratos que deben cumplir obligatoriamente las clases, objetos que la implementan, sirve para diseñar clases con metodos y propiedades obligatorias a implementar.
+
+  // DEV:TODO -> Clases abstractas
+  // abstract class Vehiculo {
+  //   String? modelo;
+  //   String? color;
+  //   String? marca;
+
+  //   void miCombustible();
+  // }
+
+  // class Camion extends Vehiculo {
+
+  //   @override
+  //   void miCombustible(){
+  //     print('Mi combustible es Gasolina');
+  //   }
+  // }
+  // class Auto extends Vehiculo {
+  //   @override
+  //   void miCombustible(){
+  //     print('Mi combustible es Diesel');
+  //   }
+  // }
+  // class Moto extends Vehiculo {
+  //   @override
+  //   void miCombustible(){
+  //     print('Mi combustible es Gas');
+  //   }
+  // }
+
+  // void main(List<String> args) {
+  //   var camion = Camion();
+  //   var automovil = Auto();
+  //   var moto = Moto();
+  //   camion.miCombustible();
+  //   automovil.miCombustible();
+  //   moto.miCombustible();
+    // camion.color = "Verde";
+    //   camion.modelo = "Truck";
+    //   camion.marca = "Volvo";
+    //   camion.queVehiculoSoy();
+  // }
+
   // DEV:TODO -> clases interfaces
 
 
