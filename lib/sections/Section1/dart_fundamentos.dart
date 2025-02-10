@@ -281,5 +281,55 @@
   // }
 
   // DEV:TODO -> clases interfaces
+  // Son constratos que se hacen entre el objeto y la interface, si yo defino un interface cada objeto que se impplemente debe cumplir con los requisitos que esta interface necesita
+  // DEV:COMMENT -> Clase abstracta
+  abstract class Vehiculo {
+    String? modelo;
+    String? color;
+    String? marca;
 
+    void miCombustible();
+  }
+
+  // DEV:COMMENT -> Clase interface
+  abstract class EsTransporte {
+    void queTransporteSoy();
+  }
+
+  class Camion extends Vehiculo implements EsTransporte{
+
+    @override
+    void miCombustible(){
+      print('Mi combustible es Gasolina');
+    }
+
+    @override
+    void queTransporteSoy() {
+      print('Soy un camion');
+    }
+  }
+  class Auto extends Vehiculo {
+    @override
+    void miCombustible(){
+      print('Mi combustible es Diesel');
+    }
+  }
+  class Moto extends Vehiculo {
+    @override
+    void miCombustible(){
+      print('Mi combustible es Gas');
+    }
+  }
+
+  void main(List<String> args) {
+    // EsTransporte camion = Camion();
+    var camion = Camion();
+    // camion.queTransporteSoy();
+    camion.queTransporteSoy();
+
+    // camion.color = "Verde";
+    //   camion.modelo = "Truck";
+    //   camion.marca = "Volvo";
+    //   camion.queVehiculoSoy();
+  }
 
