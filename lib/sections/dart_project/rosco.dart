@@ -2,7 +2,8 @@ import 'pregunta.dart';
 
 // Clase del juego del Rosco
 class Rosco{
-  List<Pregunta>? roscoPreguntas ;
+  List<Pregunta> roscoPreguntas = [];
+  // List<Pregunta>? roscoPreguntas = [] ;
 
   static List letras = const ["A", "B", "C", "D", "E", "F"];
   static List definiciones = const [
@@ -23,20 +24,21 @@ class Rosco{
   ];
 
   Rosco(){
-    for (var index = 0; index < letras.length; index++) {
-      Pregunta roscoPregunta = Pregunta(letras[index], definiciones[index], respuestas[index]);
-      roscoPreguntas!.add(roscoPregunta);
-    }
-
-    // for (var letra in letras) {
-    //   var index = letras.indexOf(letra);
-    //   var roscoPregunta = Pregunta(letra, definiciones[index], respuestas[index]);
-    //   roscoPreguntas!.add(roscoPregunta);
+    // for (var index = 0; index < letras.length; index++) {
+    //   Pregunta roscoPregunta = Pregunta(letras[index], definiciones[index], respuestas[index]);
+    //   // roscoPreguntas!.add(roscoPregunta);
+    //   roscoPreguntas.add(roscoPregunta);
     // }
+
+    for (var letra in letras) {
+      var index = letras.indexOf(letra);
+      var roscoPregunta = Pregunta(letra, definiciones[index], respuestas[index]);
+      roscoPreguntas.add(roscoPregunta);
+    }
   }
 
   Pregunta obtenerPregunta(){
-    return Pregunta("","","");
+    return roscoPreguntas[0];
   }
 
   Pregunta pasaPalbra(){
