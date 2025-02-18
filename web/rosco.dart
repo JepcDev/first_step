@@ -45,8 +45,12 @@ class Rosco{
     return Pregunta("","","");
   }
 
-  String evaluarRepsuesta(String letra, String respuesta){
-    return " ";
+  bool evaluarRepsuesta(String letra, String respuesta){
+    // Buscamos coincidencias dentro de la lista roscoPreguntas, buscamos en la lista si existe una letra(rosco.letra == letra) y(&& ) ademas si existe la misma respuesta(rosco.respuesta == respuesta) que recibimos por parametro
+    var esCorrecta = roscoPreguntas.any(
+      (rosco) => rosco.letra == letra && rosco.respuesta == respuesta,
+    );
+    return esCorrecta;
   }
 
 
