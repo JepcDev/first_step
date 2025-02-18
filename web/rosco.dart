@@ -45,7 +45,7 @@ class Rosco{
     return Pregunta("","","");
   }
 
-  String evaluarRepsuesta(){
+  String evaluarRepsuesta(String letra, String respuesta){
     return " ";
   }
 

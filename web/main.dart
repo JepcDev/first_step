@@ -13,4 +13,12 @@ void main(){
   // final idPregunta = document.querySelector('#pregunta')!;
   // idPregunta.text =' primeraDefinicion.definicion';
   document.querySelector("#pregunta")!.text = primeraDefinicion.definicion;
+  document.querySelector("#letra")!.text = primeraDefinicion.letra;
+
+  document.querySelector("#btnEnviar")!.onClick.listen((Event){
+    var respueta = (document.querySelector("#textRespuesta") as HTMLInputElement).value;
+    var letra = document.querySelector("#letra")!.textContent;
+    print(letra);
+    print(respueta);
+  });
 }
