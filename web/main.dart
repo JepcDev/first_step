@@ -16,9 +16,10 @@ void main(){
   document.querySelector("#letra")!.text = primeraDefinicion.letra;
 
   document.querySelector("#btnEnviar")!.onClick.listen((Event){
-    var respueta = (document.querySelector("#textRespuesta") as HTMLInputElement).value;
+    var respuesta = (document.querySelector("#textRespuesta") as HTMLInputElement).value;
     var letra = document.querySelector("#letra")!.textContent;
-    print(letra);
-    print(respueta);
+
+    String mensaje = rosco.evaluarRepsuesta(letra!, respuesta);
+    print(mensaje);
   });
 }
