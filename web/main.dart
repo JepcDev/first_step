@@ -7,7 +7,7 @@ import 'rosco.dart';
 void main(){
   var rosco = Rosco();
   // print('start');
-  var primeraDefinicion = rosco.obtenerPregunta();
+  var primeraDefinicion = rosco.obtenerPregunta(true);
   print(primeraDefinicion.definicion);
   // console.log(document.querySelector('#pregunta')!);
   // final idPregunta = document.querySelector('#pregunta')!;

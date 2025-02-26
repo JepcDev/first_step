@@ -1,10 +1,13 @@
+import 'dart:collection';
+
 import 'pregunta.dart';
 import 'rosco_api.dart';
 
 // Clase del juego del Rosco
 class Rosco{
   // List<Pregunta>? roscoPreguntas = [] ;
-  List<Pregunta> roscoPreguntas = [];
+  ListQueue<Pregunta> roscoPreguntas = ListQueue<Pregunta>();//una lista "Queue" almacena los datos segun como van siendo añadidos a la lista
+  List<String> preguntasRespondidas = [];//Almacena todas las pregunta que se respondieron o obtubieron.
 
   Rosco(){
     // for (var index = 0; index < letras.length; index++) {
@@ -16,8 +19,12 @@ class Rosco{
     roscoPreguntas.addAll(RoscoApi().obtenerRoscos());
   }
 
-  Pregunta obtenerPregunta(){
-    return roscoPreguntas[0];
+  Pregunta obtenerPregunta(bool preguntaInicial){
+    if (preguntaInicial) {
+      return roscoPreguntas.first;
+    }
+
+    return roscoPreguntas.last;
   }
 
   Pregunta pasaPalbra(){
@@ -25,12 +32,14 @@ class Rosco{
   }
 
   String evaluarRepsuesta(String letra, String respuesta){
-    // Buscamos coincidencias dentro de la lista roscoPreguntas, buscamos en la lista si existe una letra(rosco.letra == letra) y(&& ) ademas si existe la misma respuesta(rosco.respuesta == respuesta) que recibimos por parametro
-    var esCorrecta = roscoPreguntas.any(
-      (rosco) => rosco.letra == letra && rosco.respuesta == respuesta,
+    //firstWhere Devuelve la pregunta o primer elemento que encuentre en base a una condicion que le enviemos.
+    // devuelve la 1er pregunta que encuentre segun la condicion que le estamos enviando y se almacena en pregunta
+    var pregunta = roscoPreguntas.firstWhere(
+      (rosco) => rosco.letra == letra
     );
+    preguntasRespondidas.add(pregunta.letra);//almacena la letra de las preguntas que ya se respondieron
 
-    return esCorrecta ? "Letra $letra respuesta correcta" : "Letra $letra respuesta incorrecta";
+    return pregunta.respuesta == respuesta ? "Letra $letra respuesta correcta" : "Letra $letra respuesta incorrecta";
 
   }
 
