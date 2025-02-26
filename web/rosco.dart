@@ -13,7 +13,7 @@ class Rosco{
     //   roscoPreguntas.add(roscoPregunta);
     // }
     // Con addAll se agregan todos los elementos a la lista de una vez
-    roscoPreguntas.addAll(RoscoApi().obtenerRosocos());
+    roscoPreguntas.addAll(RoscoApi().obtenerRoscos());
   }
 
   Pregunta obtenerPregunta(){
@@ -30,11 +30,8 @@ class Rosco{
       (rosco) => rosco.letra == letra && rosco.respuesta == respuesta,
     );
 
-    if (esCorrecta) {
-      return "Letra $letra respuesta correcta";
-    }
+    return esCorrecta ? "Letra $letra respuesta correcta" : "Letra $letra respuesta incorrecta";
 
-    return "Letra $letra respuesta incorrecta";
   }
 
 
