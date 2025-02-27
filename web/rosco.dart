@@ -20,10 +20,20 @@ class Rosco{
   }
 
   Pregunta obtenerPregunta(bool preguntaInicial){
-    if (preguntaInicial) {
-      return roscoPreguntas.first;
-    }
-
+    if (preguntaInicial) return roscoPreguntas.first;
+    // any devuelve un boleano segun que devuelva la funcion que le enviemos.
+    // en firstWhere estamos enviando una funcion flecha a cada uno de los elementos de "roscoPreguntas" para poder acceder al elemento de esa lista en este caso al elemento(objeto) de tipo pregunta
+    // y al objeto "rosco" de tipo pregunta de la lista de roscoPreguntas accedemos al atributo "letra"
+    // y lo que queremos obtener de firstWhere es que solamente vamos a traer la primera pregunta donde esta no exista dentro de la coleccion preguntasRespondidas
+    // dentro de firstWhere ejecutamos una funcion "any" donde buscamos la "letra" de la lista de preguntasRespondidas que sea igual a la letra del objeto rosco, pero al estar negando la funcion estamos queriendo traer la letra que no se enceuntra dentro de la lista de preguntasRespondidas
+    // basicamente cada vez que preguntemos que si la letra de rosco existe dentro de preguntasRespondidas y esta nos devuelva verdadero entoces al negar! la respuesta de any le decimos a firstWhere que no tome ese elemento o objetos rosco de tipo pregunta(de la coleccion roscoPreguntas) ya que se encuentra dentro de las preguntasRespondidas y entonces pasa a la siguiente.
+    // Le decimos a firstWhere que no tome ese elemento rosco cada vez que la respuesta de any sea true. ya que al negar la respuesta de !any volvemos un true a false y firstWhere entiende que no debe tomar o devolver ese elemento
+    var siguietePregunta = roscoPreguntas.firstWhere(
+      (rosco) =>
+          !preguntasRespondidas.any(
+            (letraRespondida) => letraRespondida == rosco.letra,
+          ),
+    );
     return roscoPreguntas.last;
   }
 

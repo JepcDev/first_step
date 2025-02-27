@@ -2,6 +2,7 @@ import 'package:web/web.dart';
 
 
 import 'rosco.dart';
+import 'pregunta.dart';
 
 
 void main(){
@@ -20,6 +21,16 @@ void main(){
     var letra = document.querySelector("#letra")!.textContent;
 
     String mensaje = rosco.evaluarRepsuesta(letra!, respuesta);
+
+    var nuevaPregunta = rosco.obtenerPregunta(false);
+    actualizarUI(nuevaPregunta);
+
     print(mensaje);
   });
+}
+
+void actualizarUI(Pregunta pregunta){
+  document.querySelector("#pregunta")!.text = pregunta.definicion;
+  document.querySelector("#letra")!.text = pregunta.letra;
+  document.querySelector("#textRespuesta")!.textContent = "";
 }
