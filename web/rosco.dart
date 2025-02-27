@@ -28,16 +28,24 @@ class Rosco{
     // dentro de firstWhere ejecutamos una funcion "any" donde buscamos la "letra" de la lista de preguntasRespondidas que sea igual a la letra del objeto rosco, pero al estar negando la funcion estamos queriendo traer la letra que no se enceuntra dentro de la lista de preguntasRespondidas
     // basicamente cada vez que preguntemos que si la letra de rosco existe dentro de preguntasRespondidas y esta nos devuelva verdadero entoces al negar! la respuesta de any le decimos a firstWhere que no tome ese elemento o objetos rosco de tipo pregunta(de la coleccion roscoPreguntas) ya que se encuentra dentro de las preguntasRespondidas y entonces pasa a la siguiente.
     // Le decimos a firstWhere que no tome ese elemento rosco cada vez que la respuesta de any sea true. ya que al negar la respuesta de !any volvemos un true a false y firstWhere entiende que no debe tomar o devolver ese elemento
-    var siguietePregunta = roscoPreguntas.firstWhere(
+    // orElse:() => Pregunta("", "", "") cuando llegamos al final de la coleccion de roscoPreguntas retornamos un objeto Pregunta vacio, para reiniciar el juego del rosco con la coleccion preguntasRespondidas vacia.
+    var siguientePregunta = roscoPreguntas.firstWhere(
       (rosco) =>
           !preguntasRespondidas.any(
             (letraRespondida) => letraRespondida == rosco.letra,
-          ),
+          ),orElse:() => Pregunta("", "", "")
     );
-    return roscoPreguntas.last;
+
+    // cuando llegamos al final de la lista roscoPreguntas comprovamos si nos devuelven un objeto Pregunta vacion y reiniciamos las Preguntas preguntasRespondidas, volvemos a llamar el metodo y reiniciamos el rosco
+    if (siguientePregunta.letra =="" && siguientePregunta.definicion=="" && siguientePregunta.respuesta=="") {
+      preguntasRespondidas = [];
+      return obtenerPregunta(false);
+    }
+
+    return siguientePregunta;
   }
 
-  Pregunta pasaPalbra(){
+  Pregunta pasaPalabra(){
     return Pregunta("","","");
   }
 
@@ -48,6 +56,7 @@ class Rosco{
       (rosco) => rosco.letra == letra
     );
     preguntasRespondidas.add(pregunta.letra);//almacena la letra de las preguntas que ya se respondieron
+    print(preguntasRespondidas);
 
     return pregunta.respuesta == respuesta ? "Letra $letra respuesta correcta" : "Letra $letra respuesta incorrecta";
 
