@@ -16,7 +16,7 @@ void main(){
   document.querySelector("#pregunta")!.text = primeraDefinicion.definicion;
   document.querySelector("#letra")!.text = primeraDefinicion.letra;
 
-  document.querySelector("#btnEnviar")!.onClick.listen((Event){
+  document.querySelector("#btnEnviar")!.onClick.listen((event){
     var respuesta = (document.querySelector("#textRespuesta") as HTMLInputElement).value;
     var letra = document.querySelector("#letra")!.textContent;
 
@@ -26,6 +26,12 @@ void main(){
     actualizarUI(nuevaPregunta);
 
     print(mensaje);
+  });
+
+  document.querySelector("#btnPasapalabra")!.onClick.listen((event){
+    var letra = document.querySelector("#letra")!.textContent;
+    var nuevaPregunta = rosco.pasaPalabra(letra!);
+    actualizarUI(nuevaPregunta);
   });
 }
 

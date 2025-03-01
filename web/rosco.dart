@@ -8,6 +8,7 @@ class Rosco{
   // List<Pregunta>? roscoPreguntas = [] ;
   ListQueue<Pregunta> roscoPreguntas = ListQueue<Pregunta>();//una lista "Queue" almacena los datos segun como van siendo añadidos a la lista
   List<String> preguntasRespondidas = [];//Almacena todas las pregunta que se respondieron o obtubieron.
+  List<String> preguntasPasadas = []; //Almacena las preguntas que fueron pasadas por el jugador, es decir las preguntas que no obtuvieron respuesta.
 
   Rosco(){
     // for (var index = 0; index < letras.length; index++) {
@@ -45,8 +46,23 @@ class Rosco{
     return siguientePregunta;
   }
 
-  Pregunta pasaPalabra(){
-    return Pregunta("","","");
+  // La pregunta es enviada(pasa la palabra) pero sin una respuesta, es decir es pasada a la siguiente.
+  Pregunta pasaPalabra(String letraActual){
+
+    // Se toma o obtiene la letra que no sea igual a la letra que se esta enviando.
+    var siguientePregunta = roscoPreguntas.firstWhere(
+      (rosco) =>
+          !(rosco.letra == letraActual) &&
+          !preguntasPasadas.any((letraPasada) => letraPasada == rosco.letra),//verificamos si hay alguna letra en la coleccion de las preguntasPasadas que esten en la coleccion  roscoPreguntas
+      orElse:() => Pregunta("", "", ""),//cuando llegamos al final de la coleccion roscoPreguntas, devolvemos un objeto vacio para reiniciar el juego con la coleccion de preguntasPasadas vacia.
+    );
+    // si es un objeto de tipo pregunta vacio, reiniciamos el juego con la coleccion de preguntasPasadas vacia, esto significa que llegamos al final de la coleccion roscoPreguntas
+    if (siguientePregunta.letra == "") {
+      preguntasPasadas = [];
+      return pasaPalabra("");
+    }
+    preguntasPasadas.add(letraActual);
+    return siguientePregunta;
   }
 
   String evaluarRepsuesta(String letra, String respuesta){
@@ -58,7 +74,10 @@ class Rosco{
     preguntasRespondidas.add(pregunta.letra);//almacena la letra de las preguntas que ya se respondieron
     print(preguntasRespondidas);
 
-    return pregunta.respuesta == respuesta ? "Letra $letra respuesta correcta" : "Letra $letra respuesta incorrecta";
+    // evaluamos si la respuesta que ingresamos por teclado es correcta es decir si es que eciste dentro de la coleccion roscoPreguntas.
+    return pregunta.respuesta == respuesta
+        ? "Letra $letra respuesta correcta"
+        : "Letra $letra respuesta incorrecta";
 
   }
 
