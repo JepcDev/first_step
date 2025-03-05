@@ -38,20 +38,22 @@ class Rosco{
           !preguntasPasadas.any((letraPasada) => letraPasada == rosco.letra),
       orElse: () => Pregunta("", "", ""),
     );
-
     // cuando llegamos al final de la lista roscoPreguntas comprovamos si nos devuelven un objeto Pregunta vacion y reiniciamos las Preguntas preguntasRespondidas, volvemos a llamar el metodo y reiniciamos el rosco
     if (siguientePregunta.letra =="" && siguientePregunta.definicion=="" && siguientePregunta.respuesta=="") {
-      preguntasRespondidas = [];
-      return obtenerPregunta(false);
+      // verificamos si se puede reiniciar el rosco pero con las preguntas que aun no han sido respondidas
+      if (puedoResetearRosco()) {
+        preguntasPasadas = [];
+        return obtenerPregunta(false);
+      }else{
+        return roscoPreguntas.last;
+      }
     }
-
     return siguientePregunta;
   }
 
   // DEV:COMMENT -> pasaPalabra
-  // La pregunta es enviada(pasa la palabra) pero sin una respuesta, es decir es pasada a la siguiente.
+  // La pregunta es enviada(pasa la palabra) pero sin una respuesta, es decir se pasada o salta a la siguiente pregunta.
   Pregunta pasaPalabra(String letraActual){
-
     // Se toma o obtiene la letra que no sea igual a la letra que se esta enviando.
     var siguientePregunta = roscoPreguntas.firstWhere(
       (rosco) =>
@@ -62,8 +64,12 @@ class Rosco{
     );
     // si es un objeto de tipo pregunta vacio, reiniciamos el juego con la coleccion de preguntasPasadas vacia, esto significa que llegamos al final de la coleccion roscoPreguntas
     if (siguientePregunta.letra =="" && siguientePregunta.definicion=="" && siguientePregunta.respuesta=="") {
-      preguntasPasadas = [];
-      return pasaPalabra("");
+      if (puedoResetearRosco()) {
+        preguntasPasadas = [];
+        return pasaPalabra("");
+      }else{
+        return roscoPreguntas.last;
+      }
     }
     preguntasPasadas.add(letraActual);
     return siguientePregunta;
@@ -86,6 +92,11 @@ class Rosco{
 
   }
 
+  bool puedoResetearRosco(){
+    // utilizamos any para ejecutar una funcion en cada uno de los elementos de la coleccion roscoPreguntas y se hace lo mismo en la coleccion de preguntasRespondidas para verificar si existe algun elemento(letra) en roscoPreguntas que no exista en la coleccion preguntasRespondidas
+    // Verificamos si existe alguna pregunta que no haya sido respondida
+    return roscoPreguntas.any((rosco)=> !preguntasRespondidas.any((letraRespondida)=> letraRespondida == rosco.letra));
+  }
 
 
 }
