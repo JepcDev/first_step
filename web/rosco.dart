@@ -30,11 +30,13 @@ class Rosco{
     // basicamente cada vez que preguntemos que si la letra de rosco existe dentro de preguntasRespondidas y esta nos devuelva verdadero entoces al negar! la respuesta de any le decimos a firstWhere que no tome ese elemento o objetos rosco de tipo pregunta(de la coleccion roscoPreguntas) ya que se encuentra dentro de las preguntasRespondidas y entonces pasa a la siguiente.
     // Le decimos a firstWhere que no tome ese elemento rosco cada vez que la respuesta de any sea true. ya que al negar la respuesta de !any volvemos un true a false y firstWhere entiende que no debe tomar o devolver ese elemento
     // orElse:() => Pregunta("", "", "") cuando llegamos al final de la coleccion de roscoPreguntas retornamos un objeto Pregunta vacio, para reiniciar el juego del rosco con la coleccion preguntasRespondidas vacia.
+      //!preguntasRespondidas.any buscamos en la coleccion de roscoPregunta las preguntas que no esten dentro de la coleccion de preguntasRespondidas(coleccion de letras)
+      // !preguntasPasadas.any buscamos en la coleccion de roscoPreguntas las preguntas que no esten dentro de la coleccion de preguntasPasadas
     var siguientePregunta = roscoPreguntas.firstWhere(
       (rosco) =>
-          !preguntasRespondidas.any(
-            (letraRespondida) => letraRespondida == rosco.letra,
-          ),orElse:() => Pregunta("", "", "")
+          !preguntasRespondidas.any((letraRespondida) => letraRespondida == rosco.letra,) &&
+          !preguntasPasadas.any((letraPasada) => letraPasada == rosco.letra),
+      orElse: () => Pregunta("", "", ""),
     );
 
     // cuando llegamos al final de la lista roscoPreguntas comprovamos si nos devuelven un objeto Pregunta vacion y reiniciamos las Preguntas preguntasRespondidas, volvemos a llamar el metodo y reiniciamos el rosco
@@ -46,6 +48,7 @@ class Rosco{
     return siguientePregunta;
   }
 
+  // DEV:COMMENT -> pasaPalabra
   // La pregunta es enviada(pasa la palabra) pero sin una respuesta, es decir es pasada a la siguiente.
   Pregunta pasaPalabra(String letraActual){
 
@@ -53,11 +56,12 @@ class Rosco{
     var siguientePregunta = roscoPreguntas.firstWhere(
       (rosco) =>
           !(rosco.letra == letraActual) &&
-          !preguntasPasadas.any((letraPasada) => letraPasada == rosco.letra),//verificamos si hay alguna letra en la coleccion de las preguntasPasadas que esten en la coleccion  roscoPreguntas
+          !preguntasPasadas.any((letraPasada) => letraPasada == rosco.letra)&&
+          !preguntasRespondidas.any((letraRespondida) => letraRespondida == rosco.letra),//verificamos si hay alguna letra en la coleccion de las preguntasPasadas que esten en la coleccion  roscoPreguntas
       orElse:() => Pregunta("", "", ""),//cuando llegamos al final de la coleccion roscoPreguntas, devolvemos un objeto vacio para reiniciar el juego con la coleccion de preguntasPasadas vacia.
     );
     // si es un objeto de tipo pregunta vacio, reiniciamos el juego con la coleccion de preguntasPasadas vacia, esto significa que llegamos al final de la coleccion roscoPreguntas
-    if (siguientePregunta.letra == "") {
+    if (siguientePregunta.letra =="" && siguientePregunta.definicion=="" && siguientePregunta.respuesta=="") {
       preguntasPasadas = [];
       return pasaPalabra("");
     }
@@ -65,6 +69,7 @@ class Rosco{
     return siguientePregunta;
   }
 
+// DEV:COMMENT -> evaluarRepsuestag
   String evaluarRepsuesta(String letra, String respuesta){
     //firstWhere Devuelve la pregunta o primer elemento que encuentre en base a una condicion que le enviemos.
     // devuelve la 1er pregunta que encuentre segun la condicion que le estamos enviando y se almacena en pregunta
