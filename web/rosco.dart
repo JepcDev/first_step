@@ -82,7 +82,16 @@ class Rosco{
     var pregunta = roscoPreguntas.firstWhere(
       (rosco) => rosco.letra == letra
     );
-    preguntasRespondidas.add(pregunta.letra);//almacena la letra de las preguntas que ya se respondieron
+
+    var isExist = roscoPreguntas.any(
+      (rosco) => preguntasRespondidas.contains(pregunta.letra)
+    );
+
+    print("existe $isExist");
+
+    if (!isExist) {
+      preguntasRespondidas.add(pregunta.letra);//almacena la letra de las preguntas que ya se respondieron
+    }
     print(preguntasRespondidas);
 
     // evaluamos si la respuesta que ingresamos por teclado es correcta es decir si es que eciste dentro de la coleccion roscoPreguntas.
