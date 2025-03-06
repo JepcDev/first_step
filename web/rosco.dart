@@ -2,13 +2,20 @@ import 'dart:collection';
 
 import 'pregunta.dart';
 import 'rosco_api.dart';
+import 'resultado.dart';
 
 // Clase del juego del Rosco
-class Rosco{
+class Rosco implements Resultado{
   // List<Pregunta>? roscoPreguntas = [] ;
   ListQueue<Pregunta> roscoPreguntas = ListQueue<Pregunta>();//una lista "Queue" almacena los datos segun como van siendo añadidos a la lista
   List<String> preguntasRespondidas = [];//Almacena todas las pregunta que se respondieron o obtubieron.
   List<String> preguntasPasadas = []; //Almacena las preguntas que fueron pasadas por el jugador, es decir las preguntas que no obtuvieron respuesta.
+  @override
+  int cantidadPreguntasIncorrectas = 0;
+  @override
+  int cantidadPreguntasCorrectas = 0;
+  @override
+  int cantidadNumeroPreguntas = 0;
 
   Rosco(){
     // for (var index = 0; index < letras.length; index++) {
@@ -18,6 +25,7 @@ class Rosco{
     // }
     // Con addAll se agregan todos los elementos a la lista de una vez
     roscoPreguntas.addAll(RoscoApi().obtenerRoscos());
+    cantidadNumeroPreguntas = roscoPreguntas.length;
   }
 
   Pregunta obtenerPregunta(bool preguntaInicial){
@@ -94,10 +102,14 @@ class Rosco{
     }
     print(preguntasRespondidas);
 
+    if (pregunta.respuesta == respuesta) {
+      cantidadPreguntasCorrectas++;
+      return "Letra $letra respuesta correcta";
+    }
+    cantidadPreguntasIncorrectas++;
+
     // evaluamos si la respuesta que ingresamos por teclado es correcta es decir si es que eciste dentro de la coleccion roscoPreguntas.
-    return pregunta.respuesta == respuesta
-        ? "Letra $letra respuesta correcta"
-        : "Letra $letra respuesta incorrecta";
+    return "Letra $letra respuesta incorrecta";
 
   }
 
