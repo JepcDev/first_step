@@ -30,6 +30,8 @@ void main(){
       var nuevaPregunta = rosco.obtenerPregunta(false);
       actualizarUI(nuevaPregunta);
       print(mensaje);
+    }else{
+      desabilitarBotones();
     }
   });
 
@@ -41,12 +43,36 @@ void main(){
       var letra = document.querySelector("#letra")!.textContent;
       var nuevaPregunta = rosco.pasaPalabra(letra!);
       actualizarUI(nuevaPregunta);
+    }else{
+      desabilitarBotones();
     }
+  });
+
+  document.querySelector("#reiniciar")!.onClick.listen((event){
+    rosco.reiniciarRosco();
+    habilitarBotones();
+    print(rosco.cantidadNumeroPreguntas);
+    print(rosco.cantidadPreguntasIncorrectas);
+    print(rosco.cantidadPreguntasCorrectas);
+    print(rosco.preguntasPasadas);
+    print(rosco.preguntasRespondidas);
   });
 }
 
 void actualizarUI(Pregunta pregunta){
   document.querySelector("#pregunta")!.text = pregunta.definicion;
   document.querySelector("#letra")!.text = pregunta.letra;
-  document.querySelector("#textRespuesta")!.textContent = "";
+  // (document.querySelector("#textRespuesta")!.textContent) = "";
+  (document.querySelector("#textRespuesta") as HTMLInputElement).value = "";
+}
+
+void desabilitarBotones(){
+  (document.querySelector("#btnEnviar") as HTMLButtonElement).disabled=true;
+  (document.querySelector("#btnPasapalabra") as HTMLButtonElement).disabled=true;
+  (document.querySelector("#reiniciar") as HTMLButtonElement).disabled=false;
+}
+void habilitarBotones(){
+  (document.querySelector("#btnEnviar") as HTMLButtonElement).disabled=false;
+  (document.querySelector("#btnPasapalabra") as HTMLButtonElement).disabled=false;
+  (document.querySelector("#reiniciar") as HTMLButtonElement).disabled=true;
 }

@@ -5,14 +5,14 @@ class RoscoEstado {
   bool continueRosco = true;
 
   bool continuarRosco(Resultado resultado){
-    checkRosco(resultado.cantidadPreguntasCorrectas == resultado.cantidadNumeroPreguntas, "Ganaste el Rosco!! Felicidades");
-    checkRosco(resultado.cantidadPreguntasIncorrectas == resultado.cantidadNumeroPreguntas, "Lo siento, Perdiste :)!!");
-    checkRosco(resultado.cantidadPreguntasCorrectas+resultado.cantidadPreguntasIncorrectas == resultado.cantidadNumeroPreguntas, "Lo siento, se acabaron los intentos :)");
+    _checkRosco(resultado.cantidadPreguntasCorrectas == resultado.cantidadNumeroPreguntas, "Ganaste el Rosco!! Felicidades");
+    _checkRosco(resultado.cantidadPreguntasIncorrectas == resultado.cantidadNumeroPreguntas, "Lo siento, Perdiste :)!!");
+    _checkRosco(resultado.cantidadPreguntasCorrectas+resultado.cantidadPreguntasIncorrectas == resultado.cantidadNumeroPreguntas, "Lo siento, se acabaron los intentos :)");
 
     return continueRosco;
   }
 
-  void checkRosco(bool condicion, mensaje){
+  void _checkRosco(bool condicion, mensaje){
     if(condicion){
       continueRosco = false;
       print(mensaje);

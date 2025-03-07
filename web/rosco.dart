@@ -49,7 +49,7 @@ class Rosco implements Resultado{
     // cuando llegamos al final de la lista roscoPreguntas comprovamos si nos devuelven un objeto Pregunta vacion y reiniciamos las Preguntas preguntasRespondidas, volvemos a llamar el metodo y reiniciamos el rosco
     if (siguientePregunta.letra =="" && siguientePregunta.definicion=="" && siguientePregunta.respuesta=="") {
       // verificamos si se puede reiniciar el rosco pero con las preguntas que aun no han sido respondidas
-      if (puedoResetearRosco()) {
+      if (_puedoResetearRosco()) {
         preguntasPasadas = [];
         return obtenerPregunta(false);
       }else{
@@ -72,7 +72,7 @@ class Rosco implements Resultado{
     );
     // si es un objeto de tipo pregunta vacio, reiniciamos el juego con la coleccion de preguntasPasadas vacia, esto significa que llegamos al final de la coleccion roscoPreguntas
     if (siguientePregunta.letra =="" && siguientePregunta.definicion=="" && siguientePregunta.respuesta=="") {
-      if (puedoResetearRosco()) {
+      if (_puedoResetearRosco()) {
         preguntasPasadas = [];
         return pasaPalabra("");
       }else{
@@ -110,10 +110,9 @@ class Rosco implements Resultado{
 
     // evaluamos si la respuesta que ingresamos por teclado es correcta es decir si es que eciste dentro de la coleccion roscoPreguntas.
     return "Letra $letra respuesta incorrecta";
-
   }
 
-  bool puedoResetearRosco(){
+  bool _puedoResetearRosco(){
     // utilizamos any para ejecutar una funcion en cada uno de los elementos de la coleccion roscoPreguntas y se hace lo mismo en la coleccion de preguntasRespondidas para verificar si existe algun elemento(letra) en roscoPreguntas que no exista en la coleccion preguntasRespondidas
     // Verificamos si existe alguna pregunta que no haya sido respondida
     return roscoPreguntas.any(
@@ -124,5 +123,12 @@ class Rosco implements Resultado{
     );
   }
 
+  void reiniciarRosco(){
+      preguntasPasadas = [];
+      preguntasRespondidas = [];
+      cantidadPreguntasIncorrectas = 0;
+      cantidadPreguntasCorrectas = 0;
+      cantidadNumeroPreguntas = 0;
+  }
 
 }
