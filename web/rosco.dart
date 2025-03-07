@@ -59,7 +59,7 @@ class Rosco implements Resultado{
     return siguientePregunta;
   }
 
-  // DEV:COMMENT -> pasaPalabra
+  // DEV:COMMENT -> pasaPalabra()
   // La pregunta es enviada(pasa la palabra) pero sin una respuesta, es decir se pasada o salta a la siguiente pregunta.
   Pregunta pasaPalabra(String letraActual){
     // Se toma o obtiene la letra que no sea igual a la letra que se esta enviando.
@@ -116,7 +116,12 @@ class Rosco implements Resultado{
   bool puedoResetearRosco(){
     // utilizamos any para ejecutar una funcion en cada uno de los elementos de la coleccion roscoPreguntas y se hace lo mismo en la coleccion de preguntasRespondidas para verificar si existe algun elemento(letra) en roscoPreguntas que no exista en la coleccion preguntasRespondidas
     // Verificamos si existe alguna pregunta que no haya sido respondida
-    return roscoPreguntas.any((rosco)=> !preguntasRespondidas.any((letraRespondida)=> letraRespondida == rosco.letra));
+    return roscoPreguntas.any(
+      (rosco) =>
+          !preguntasRespondidas.any(
+            (letraRespondida) => letraRespondida == rosco.letra,
+          ),
+    );
   }
 
 

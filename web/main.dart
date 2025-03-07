@@ -3,6 +3,7 @@ import 'package:web/web.dart';
 
 import 'rosco.dart';
 import 'pregunta.dart';
+import 'rosco_estado.dart';
 
 
 void main(){
@@ -16,22 +17,31 @@ void main(){
   document.querySelector("#pregunta")!.text = primeraDefinicion.definicion;
   document.querySelector("#letra")!.text = primeraDefinicion.letra;
 
+// DEV:COMMENT -> #btnEnviar
   document.querySelector("#btnEnviar")!.onClick.listen((event){
     var respuesta = (document.querySelector("#textRespuesta") as HTMLInputElement).value;
     var letra = document.querySelector("#letra")!.textContent;
-
     String mensaje = rosco.evaluarRepsuesta(letra!, respuesta);
 
-    var nuevaPregunta = rosco.obtenerPregunta(false);
-    actualizarUI(nuevaPregunta);
+    var roscoEstado = RoscoEstado();
+    // al implementar la interface Resultado se puede usar los atributos y el rosco
+    if (roscoEstado.continuarRosco(rosco)) {
 
-    print(mensaje);
+      var nuevaPregunta = rosco.obtenerPregunta(false);
+      actualizarUI(nuevaPregunta);
+      print(mensaje);
+    }
   });
 
+// DEV:COMMENT -> #btnPasapalabra
   document.querySelector("#btnPasapalabra")!.onClick.listen((event){
-    var letra = document.querySelector("#letra")!.textContent;
-    var nuevaPregunta = rosco.pasaPalabra(letra!);
-    actualizarUI(nuevaPregunta);
+    var resultadoRosco = RoscoEstado();
+
+    if (resultadoRosco.continuarRosco(rosco)) {
+      var letra = document.querySelector("#letra")!.textContent;
+      var nuevaPregunta = rosco.pasaPalabra(letra!);
+      actualizarUI(nuevaPregunta);
+    }
   });
 }
 
