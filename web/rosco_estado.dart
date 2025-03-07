@@ -5,6 +5,8 @@ class RoscoEstado {
   bool continueRosco = true;
 
   bool continuarRosco(Resultado resultado){
+    // print(resultado.cantidadPreguntasCorrectas);
+    // print(resultado.cantidadPreguntasIncorrectas);
     _checkRosco(resultado.cantidadPreguntasCorrectas == resultado.cantidadNumeroPreguntas, "Ganaste el Rosco!! Felicidades");
     _checkRosco(resultado.cantidadPreguntasIncorrectas == resultado.cantidadNumeroPreguntas, "Lo siento, Perdiste :)!!");
     _checkRosco(resultado.cantidadPreguntasCorrectas+resultado.cantidadPreguntasIncorrectas == resultado.cantidadNumeroPreguntas, "Lo siento, se acabaron los intentos :)");

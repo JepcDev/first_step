@@ -95,12 +95,12 @@ class Rosco implements Resultado{
       (rosco) => preguntasRespondidas.contains(pregunta.letra)
     );
 
-    print("existe $isExist");
+    // print("existe $isExist");
 
     if (!isExist) {
       preguntasRespondidas.add(pregunta.letra);//almacena la letra de las preguntas que ya se respondieron
     }
-    print(preguntasRespondidas);
+    // print(preguntasRespondidas);
 
     if (pregunta.respuesta == respuesta) {
       cantidadPreguntasCorrectas++;
@@ -128,7 +128,6 @@ class Rosco implements Resultado{
       preguntasRespondidas = [];
       cantidadPreguntasIncorrectas = 0;
       cantidadPreguntasCorrectas = 0;
-      cantidadNumeroPreguntas = 0;
   }
 
 }

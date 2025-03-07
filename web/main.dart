@@ -10,7 +10,7 @@ void main(){
   var rosco = Rosco();
   // print('start');
   var primeraDefinicion = rosco.obtenerPregunta(true);
-  print(primeraDefinicion.definicion);
+  // print(primeraDefinicion.definicion);
   // console.log(document.querySelector('#pregunta')!);
   // final idPregunta = document.querySelector('#pregunta')!;
   // idPregunta.text =' primeraDefinicion.definicion';
@@ -51,11 +51,13 @@ void main(){
   document.querySelector("#reiniciar")!.onClick.listen((event){
     rosco.reiniciarRosco();
     habilitarBotones();
-    print(rosco.cantidadNumeroPreguntas);
-    print(rosco.cantidadPreguntasIncorrectas);
-    print(rosco.cantidadPreguntasCorrectas);
-    print(rosco.preguntasPasadas);
-    print(rosco.preguntasRespondidas);
+    document.querySelector("#pregunta")!.text = primeraDefinicion.definicion;
+    document.querySelector("#letra")!.text = primeraDefinicion.letra;
+    // print(rosco.cantidadNumeroPreguntas);
+    // print(rosco.cantidadPreguntasIncorrectas);
+    // print(rosco.cantidadPreguntasCorrectas);
+    // print(rosco.preguntasPasadas);
+    // print(rosco.preguntasRespondidas);
   });
 }
 
